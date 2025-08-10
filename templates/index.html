@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Visualizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CODE VISUALIZER</h1>
+        </header>
+        
+        <main class="main-content">
+            <!-- Code Editor Section -->
+            <section class="code-editor-section">
+                <h2>Code Editor</h2>
+                <div class="code-input-container">
+                    <textarea id="codeEditor" placeholder="Enter your Python code here...&#10;&#10;Example:&#10;def example():&#10;    a = 5&#10;    b = a + 3&#10;    print(b)&#10;&#10;example()" rows="15"></textarea>
+                </div>
+                
+                <div class="file-upload-container">
+                    <label for="fileInput" class="file-upload-btn">
+                        📁 Upload .py File
+                    </label>
+                    <input type="file" id="fileInput" accept=".py" style="display: none;">
+                </div>
+                
+                <div class="execution-controls">
+                    <button id="runBtn" class="btn btn-primary">▶ Run</button>
+                    <button id="stepBtn" class="btn btn-secondary" disabled>⏭ Step</button>
+                    <button id="pauseBtn" class="btn btn-secondary" disabled>⏸ Pause</button>
+                    <button id="resetBtn" class="btn btn-secondary" disabled>🔄 Reset</button>
+                </div>
+            </section>
+            
+            <!-- Visualization Panel -->
+            <section class="visualization-section">
+                <h2>Visualization Panel</h2>
+                
+                <!-- Current Line Display -->
+                <div class="info-panel">
+                    <h3>Current Line: <span id="currentLine">-</span></h3>
+                </div>
+                
+                <!-- Variables Display -->
+                <div class="info-panel">
+                    <h3>Variables:</h3>
+                    <div id="variablesDisplay" class="variables-display">
+                        <p class="no-data">No variables yet</p>
+                    </div>
+                </div>
+                
+                <!-- Call Stack Display -->
+                <div class="info-panel">
+                    <h3>Call Stack:</h3>
+                    <div id="callStackDisplay" class="call-stack-display">
+                        <p class="no-data">main</p>
+                    </div>
+                </div>
+                
+                <!-- Output Display -->
+                <div class="info-panel">
+                    <h3>Output:</h3>
+                    <div id="outputDisplay" class="output-display">
+                        <p class="no-data">No output yet</p>
+                    </div>
+                </div>
+                
+                <!-- Error Display -->
+                <div id="errorDisplay" class="error-display" style="display: none;">
+                    <h3>ERROR: <span id="errorType"></span></h3>
+                    <p id="errorMessage"></p>
+                    <button id="returnToEditor" class="btn btn-error">Return to Code Editor</button>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Code Display with Line Numbers -->
+        <section class="code-display-section" id="codeDisplaySection" style="display: none;">
+            <h2>Code Execution</h2>
+            <div class="code-display-container">
+                <div id="codeDisplay" class="code-display"></div>
+            </div>
+        </section>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html> 
